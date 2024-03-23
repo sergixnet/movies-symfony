@@ -1,0 +1,13 @@
+<h1>Movies</h1>
+
+<div>
+	<ul>
+		{% for movie in movies %}
+			<li>{{ movie.title }}
+				-
+				{{ movie.year }}
+				- Rating:
+				{{ movie.rating }}</li>
+		{% endfor %}
+	</ul>
+</div>
