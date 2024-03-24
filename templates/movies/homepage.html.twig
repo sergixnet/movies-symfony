@@ -1,13 +1,22 @@
-<h1>Movies</h1>
+{% extends "base.html.twig" %}
 
-<div>
-	<ul>
-		{% for movie in movies %}
-			<li>{{ movie.title }}
-				-
-				{{ movie.year }}
-				- Rating:
-				{{ movie.rating }}</li>
-		{% endfor %}
-	</ul>
-</div>
+{% block title %}
+	Movies directory
+{% endblock %}
+
+{% block body %}
+	<h1>Movies ({{ moviesCount }})</h1>
+
+	<div>
+		<ul>
+			{% for movie in movies %}
+				<li>{{ movie.title }}
+					-
+					{{ movie.year }}
+					- Rating:
+					{{ movie.rating }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+{% endblock %}
