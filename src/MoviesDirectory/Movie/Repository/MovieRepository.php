@@ -25,5 +25,4 @@ interface MovieRepository
 
     public function findByRatingLessOrEqual(int $rating): array;
 
-    public function generate(): void;
 }
