@@ -13,7 +13,17 @@ interface MovieRepository
 
     public function findAll(): array;
 
-    public function findByFilters(array $filters): array;
+    public function findByTitleStartsWith(string $term): array;
+
+    public function findByTitleEndsWith(string $term): array;
+
+    public function findByTitleContains(string $term): array;
+
+    public function findByYear(int $year): array;
+
+    public function findByRatingGreaterOrEqual(int $rating): array;
+
+    public function findByRatingLessOrEqual(int $rating): array;
 
     public function generate(): void;
 }

@@ -29,12 +29,47 @@ class InMemoryMovieRepository implements MovieRepository
         return $this->movies;
     }
 
-    public function findByFilters(array $filters): array
+    public function findByTitleStartsWith(string $term): array
     {
-        // TODO: implement filters
-        return [];
+        return array_filter($this->movies, function ($movie) use ($term) {
+            return strpos($movie->getTitle(), $term) === 0;
+        });
     }
 
+    public function findByTitleEndsWith(string $term): array
+    {
+        return array_filter($this->movies, function ($movie) use ($term) {
+            return strpos($movie->getTitle(), $term) === strlen($movie->getTitle()) - strlen($term);
+        });
+    }
+
+    public function findByTitleContains(string $term): array
+    {
+        return array_filter($this->movies, function ($movie) use ($term) {
+            return strpos($movie->getTitle(), $term) !== false;
+        });
+    }
+
+    public function findByYear(int $year): array
+    {
+        return array_filter($this->movies, function ($movie) use ($year) {
+            return $movie->getYear() === $year;
+        });
+    }
+
+    public function findByRatingGreaterOrEqual(int $rating): array
+    {
+        return array_filter($this->movies, function ($movie) use ($rating) {
+            return $movie->getRating() >= $rating;
+        });
+    }
+
+    public function findByRatingLessOrEqual(int $rating): array
+    {
+        return array_filter($this->movies, function ($movie) use ($rating) {
+            return $movie->getRating() <= $rating;
+        });
+    }
     public function generate(): void
     {
 
@@ -102,7 +137,7 @@ class InMemoryMovieRepository implements MovieRepository
             [
                 'title' => 'Se7en',
                 'year' => 1995,
-                'rating' => 8,
+                'rating' => 7,
             ],
             [
                 'title' => 'The Usual Suspects',
@@ -112,7 +147,7 @@ class InMemoryMovieRepository implements MovieRepository
             [
                 'title' => 'Goodfellas',
                 'year' => 1990,
-                'rating' => 8,
+                'rating' => 6,
             ],
             [
                 'title' => 'Léon: The Professional',

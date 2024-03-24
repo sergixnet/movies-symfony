@@ -25,9 +25,18 @@ class MoviesController extends AbstractController
     {
 
         // TODO: check query strings to filter movies
+        // Allow only one query parameter to filter movies
+        // switch statement form valid query strings
 
 
-        $movies = $this->movieRepository->findAll();
+
+        // $movies = $this->movieRepository->findAll();
+        // $movies = $this->movieRepository->findByTitleStartsWith('The');
+        // $movies = $this->movieRepository->findByTitleEndsWith('s');
+        // $movies = $this->movieRepository->findByTitleContains('Ring');
+        $movies = $this->movieRepository->findByYear(1994);
+        // $movies = $this->movieRepository->findByRatingGreaterOrEqual(9);
+        // $movies = $this->movieRepository->findByRatingLessOrEqual(7);
 
         return $this->render('movies/homepage.html.twig', [
             'movies' => $movies,
