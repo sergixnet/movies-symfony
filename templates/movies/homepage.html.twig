@@ -5,18 +5,55 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Movies ({{ moviesCount }})</h1>
 
-	<div>
+	<p>
+		<a class="button" href="{{path('movies_homepage')}}">View All Movies</a>
+		<a class="button" href="#examples">View Filter Examples</a>
+	</p>
+
+	{% if error %}
+		<p class="notice">Error: {{ error }}</p>
+	{% endif %}
+
+	{% if moviesCount %}
+
+		<h1>Movies ({{ moviesCount }})</h1>
+
+		<div>
+			<ul>
+				{% for movie in movies %}
+					<li>{{ movie.title }} -	{{ movie.year }}- Rating: {{ movie.rating }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+
+	{% else %}
+		<p class="notice">No movies found with that criteria.</p>
+	{% endif %}
+
+	<h2 id="examples">Filter examples</h2>
+
+	<nav>
 		<ul>
-			{% for movie in movies %}
-				<li>{{ movie.title }}
-					-
-					{{ movie.year }}
-					- Rating:
-					{{ movie.rating }}</li>
-			{% endfor %}
+			<li>
+				<a href="{{path('movies_homepage', { title_starts_with: 'The ' }) }}">With title starting with <span>'The '</span></a>
+			</li>
+			<li>
+				<a href="{{path('movies_homepage', { title_ends_with: 's' }) }}">With title ending with <span>'s'</span></a>
+			</li>
+			<li>
+				<a href="{{path('movies_homepage', { title_contains: 'Ring' }) }}">With title containing <span>'Ring'</span></a>
+			</li>
+			<li>
+				<a href="{{path('movies_homepage', { year: 2000 }) }}">From year <span>2000</span></a>
+			</li>
+			<li>
+				<a href="{{path('movies_homepage', { rating_greater_or_equal: 8 }) }}">With rating <span>8</span> or more</a>
+			</li>
+			<li>
+				<a href="{{path('movies_homepage', { rating_less_or_equal: 7 }) }}">With rating <span>7</span> or less</a>
+			</li>
 		</ul>
-	</div>
+	</nav>
 
 {% endblock %}
