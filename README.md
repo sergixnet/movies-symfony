@@ -17,13 +17,13 @@ He considerado que Symfony es una buena opción para crear una aplicación web y
 La primera vez para levantar y construir los contenedores ejecutamos en la raíz del proyecto:
 
 ```bash
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 Si se apaga el ordenador, se tiran abajo los contenedores o no se modifican los `Dockerfile`, se levanta con:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 A continuación iniciamos una sesión de bash en el contenedor de PHP:
