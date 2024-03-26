@@ -181,4 +181,9 @@ class InMemoryMovieRepository implements MovieRepository
             $this->add($movie);
         }
     }
+
+    public function empty(): void
+    {
+        $this->movies = [];
+    }
 }
