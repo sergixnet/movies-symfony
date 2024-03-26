@@ -19,6 +19,10 @@
 
 		<h1>Movies ({{ moviesCount }})</h1>
 
+		{% if filtersMessage %}
+			<h4>{{ filtersMessage }}</h4>
+		{% endif %}
+
 		<div>
 			<ul>
 				{% for movie in movies %}

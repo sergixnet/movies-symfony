@@ -55,30 +55,38 @@ class MoviesController extends AbstractController
         switch (array_key_first($oneFilter)) {
             case 'title_starts_with':
                 $movies = $this->movieRepository->findByTitleStartsWith($oneFilter['title_starts_with']);
+                $filtersMessage = 'Movies with title starting with "' . $oneFilter['title_starts_with'] . '"';
                 break;
             case 'title_ends_with':
                 $movies = $this->movieRepository->findByTitleEndsWith($oneFilter['title_ends_with']);
+                $filtersMessage = 'Movies with title ending with "' . $oneFilter['title_ends_with'] . '"';
                 break;
             case 'title_contains':
                 $movies = $this->movieRepository->findByTitleContains($oneFilter['title_contains']);
+                $filtersMessage = 'Movies with title containing "' . $oneFilter['title_contains'] . '"';
                 break;
             case 'year':
                 $movies = $this->movieRepository->findByYear($oneFilter['year']);
+                $filtersMessage = 'Movies of year ' . $oneFilter['year'];
                 break;
             case 'rating_greater_or_equal':
                 $movies = $this->movieRepository->findByRatingGreaterOrEqual($oneFilter['rating_greater_or_equal']);
+                $filtersMessage = 'Movies with rating greater or equal to ' . $oneFilter['rating_greater_or_equal'];
                 break;
             case 'rating_less_or_equal':
                 $movies = $this->movieRepository->findByRatingLessOrEqual($oneFilter['rating_less_or_equal']);
+                $filtersMessage = 'Movies with rating less or equal to ' . $oneFilter['rating_less_or_equal'];
                 break;
             default:
                 $movies = $this->movieRepository->findAll();
+                $filtersMessage = 'All movies';
         }
 
         return $this->render('movies/homepage.html.twig', [
             'movies' => $movies,
             'moviesCount' => count($movies),
             'error' => null,
+            'filtersMessage' => isset($filtersMessage) ? $filtersMessage : null,
         ]);
     }
 }
