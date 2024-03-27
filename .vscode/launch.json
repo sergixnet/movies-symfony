@@ -11,6 +11,15 @@
             "port": 9003
         },
         {
+            "name": "Listen on Docker for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/var/www/symfony": "${workspaceFolder}"
+            }
+        },
+        {
             "name": "Launch currently open script",
             "type": "php",
             "request": "launch",
